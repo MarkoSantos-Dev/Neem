@@ -35,6 +35,10 @@ app.use(methodOverride('_method'))
 
 const categories = ['fruit', 'vegetable', 'dairy']
 
+app.get('/', (req,res)=>{
+    res.render('products/home')
+})
+
 //step 6 - after adding files setting up route following Rest
 app.get('/products', async (req, res)=> {
     const { category } = req.query;
