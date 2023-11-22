@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio Browser API Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        #radioList {
+            list-style: none;
+            padding: 0;
+        }
+
+        .radioItem {
+            margin-bottom: 20px;
+        }
+
+        audio {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Radio Stations</h1>
+    <ul id="radioList"></ul>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const radioList = document.getElementById('radioList');
+
+            // Replace 'your-api-endpoint' with the actual API endpoint you want to use
+            const apiUrl = 'http://all.api.radio-browser.info/json/stations/byname/jazz';
+
+            // Fetch data from the API
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    // Iterate through the radio stations and display them
+                    data.forEach(station => {
+                        const listItem = document.createElement('li');
+                        listItem.classList.add('radioItem');
+
+                        const stationName = document.createElement('strong');
+                        stationName.textContent = station.name;
+
+                        const country = document.createElement('span');
+                        country.textContent = ` - ${station.country}`;
+
+                        const audioPlayer = document.createElement('audio');
+                        audioPlayer.controls = true;
+                        audioPlayer.src = station.url;
+
+                        listItem.appendChild(stationName);
+                        listItem.appendChild(country);
+                        listItem.appendChild(audioPlayer);
+                        radioList.appendChild(listItem);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        });
+    </script>
+</body>
+</html>
