@@ -16,8 +16,8 @@ const Product = require('./models/product');
 
 
 //===== step 2
-// mongoose.connect('mongodb+srv://markosantos:Okram2061927@cluster0.lvulstr.mongodb.net/farmStand') //using Atlas cloud
-mongoose.connect('mongodb://127.0.0.1:27017/farmStand')
+mongoose.connect('mongodb+srv://markosantos:Okram2061927@cluster0.lvulstr.mongodb.net/farmStand') //using Atlas cloud
+// mongoose.connect('mongodb://127.0.0.1:27017/farmStand')
 .then(()=>{
     console.log('mongosh connection open!!')
 })
